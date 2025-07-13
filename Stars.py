@@ -224,10 +224,11 @@ async def buy_stars_amount(update: Update, context: ContextTypes.DEFAULT_TYPE) -
     if not crypto_prices_usd:
         await update.message.reply_text("Sorry, I couldn't fetch live prices. Please try again later.")
         return await end_conversation(update, context)
-    total_usd = (get_live_star_price_from_fragments() * amount * Decimal("1.05")) * crypto_prices_usd["TON"]
+    # First, calculate the total price in USD, including our 5% fee
+    total_usd = (get_live_star_price_from_fragments() * amount * Decimal("1.05"))
     context.user_data["price_usd"] = total_usd
     price_summary = f"Okay, you want to buy *{amount} Stars* for *${total_usd:.2f} USD*.\nPlease select your payment method."
-    keyboard = [[InlineKeyboardButton(f"Pay with TON", callback_data="pay_TON"), InlineKeyboardButton(f"Pay with USDT", callback_data="pay_USDT"), InlineKeyboardButton(f"Pay with SOL", callback_data="pay_SOL")], [InlineKeyboardButton("Cancel", callback_data="cancel")]]
+    keyboard = [[InlineKeyboardButton("Pay with TON", callback_data="pay_TON"), InlineKeyboardButton("Pay with USDT", callback_data="pay_USDT"), InlineKeyboardButton("Pay with SOL", callback_data="pay_SOL")], [InlineKeyboardButton("Cancel", callback_data="cancel")]]
     await update.message.reply_text(price_summary, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
     return GET_PAYMENT_METHOD
 async def get_payment_method(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
@@ -302,12 +303,14 @@ async def sell_stars_amount(update: Update, context: ContextTypes.DEFAULT_TYPE) 
     if not crypto_prices_usd:
         await update.message.reply_text("Sorry, I couldn't fetch live prices. Please try again later.")
         return await end_conversation(update, context)
-    total_ton = (get_live_star_price_from_fragments() * amount * Decimal("0.95")) * crypto_prices_usd["TON"]
-    total_usdt = total_ton * crypto_prices_usd["TON"] / crypto_prices_usd["USDT"]
-    total_sol = total_ton * crypto_prices_usd["TON"] / crypto_prices_usd["SOL"]
+    # First, calculate the total payout value in USD, including our 5% commission
+    payout_usd = get_live_star_price_from_fragments() * amount * Decimal("0.95")
+    total_ton = payout_usd / crypto_prices_usd["TON"]
+    total_usdt = payout_usd / crypto_prices_usd["USDT"]
+    total_sol = payout_usd / crypto_prices_usd["SOL"]
     context.user_data["payouts"] = {"TON": total_ton, "USDT": total_usdt, "SOL": total_sol}
-    payout_summary = (f"Okay, you want to sell *{amount} Stars*.\n\nI can offer you:\n"
-                      f"🔹 *{total_ton:.8f} TON*\n🔹 *{total_usdt:.8f} USDT*\n🔹 *{total_sol:.8f} SOL*\n\n"
+    payout_summary = (f"Okay, you want to sell *{amount} Stars* for a total value of *${payout_usd:.2f} USD*.\n\nI can offer you:\n"
+                      f"🔹 *{total_ton:.6f} TON*\n🔹 *{total_usdt:.2f} USDT*\n🔹 *{total_sol:.4f} SOL*\n\n"
                       "Please select your payout currency.")
     keyboard = [[InlineKeyboardButton(f"Receive TON", callback_data="payout_TON"), InlineKeyboardButton(f"Receive USDT", callback_data="payout_USDT"), InlineKeyboardButton(f"Receive SOL", callback_data="payout_SOL")], [InlineKeyboardButton("Cancel", callback_data="cancel")]]
     await update.message.reply_text(payout_summary, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
