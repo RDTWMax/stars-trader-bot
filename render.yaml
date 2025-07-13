@@ -1,0 +1,36 @@
+services:
+  # Web Service for the Flask Webhook
+  - type: web
+    name: stars-trader-webhook
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.12
+      - fromGroup: stars-trader-secrets
+
+  # Background Worker for the Telegram Bot
+  - type: worker
+    name: stars-trader-bot
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python Stars.py"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.12
+      - fromGroup: stars-trader-secrets
+
+envVarGroups:
+  - name: stars-trader-secrets
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+      - key: NOWPAYMENTS_API_KEY
+      - key: IPN_SECRET_KEY
+      - key: WEBHOOK_URL
+      - key: FRAGMENTS_USERNAME
+      - key: FRAGMENTS_PASSWORD
+      - key: DB_FILE
+        value: "stars_trader.db"

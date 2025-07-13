@@ -1,0 +1,7 @@
+python-telegram-bot
+flask
+python-dotenv
+selenium
+webdriver-manager
+requests
+gunicorn
