@@ -14,3 +14,6 @@ stars_trader.db
 
 # Virtual environment
 .venv
+
+#Executable files
+*.exe 
