@@ -52,7 +52,10 @@ flask_app = Flask(__name__)
 # Global variable for the Telegram Application instance
 # This will be initialized by initialize_bot_application()
 application = None
-
+# Add this simple test route
+@flask_app.route('/')
+def home():
+    return "Bot service is running!"
 @flask_app.route("/nowpayments-ipn", methods=["POST"])
 def nowpayments_ipn():
     """

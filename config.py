@@ -34,7 +34,7 @@ getcontext().prec = 18
     GET_PAYMENT_METHOD,
     SELL_GET_PAYOUT_METHOD,
     GET_WALLET_ADDRESS,
-) = range(6)
+) = range(6) # Removed 'ccs' from here
 
 # Basic validation (optional, but good practice)
 if not all([TELEGRAM_BOT_TOKEN, NOWPAYMENTS_API_KEY, IPN_SECRET_KEY, FRAGMENTS_USERNAME, FRAGMENTS_PASSWORD]):
