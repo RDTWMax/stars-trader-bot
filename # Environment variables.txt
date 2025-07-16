@@ -1,0 +1,24 @@
+# Environment variables
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+pip-wheel-metadata/
+.installed.cfg
+*.egg-info/
+
+# IDE / Editor files
+.vscode/
+.idea/
+
+# Selenium
+fragments_error.png
+
+# Database file from .env
+stars_trader.db

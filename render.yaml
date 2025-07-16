@@ -4,8 +4,6 @@ services:
     name: stars-trader-webhook
     env: python
     plan: free
-    buildPacks:
-      - url: https://github.com/heroku/heroku-buildpack-google-chrome
     buildCommand: "pip install -r requirements.txt"
     startCommand: "gunicorn wsgi:application"
     envVars:

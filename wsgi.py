@@ -3,7 +3,7 @@ import os
 
 # IMPORTANT: Update this path to match your project's directory on PythonAnywhere
 # It will look something like '/home/YourUsername/YourProjectFolder'
-project_home = '/home/RdtwMax/AI_Projects'
+project_home = '/home/RdtwMax/mysite' # <--- CHANGED THIS LINE
 if project_home not in sys.path:
     sys.path.insert(0, project_home)
 

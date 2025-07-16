@@ -1,19 +1,42 @@
 # Environment variables
 .env
+.env.*
+!.env.example
 
-# Python cache
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-wheel-metadata/
+.installed.cfg
+*.egg-info/
 
-# Database file
-stars_trader.db
+# IDE / Editor files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Database
+*.db
 *.db-journal
+*.sqlite
+*.sqlite3
 
-# Selenium error screenshots
+# Selenium & logs
 *.png
+geckodriver.log
+chromedriver.log
 
-# Virtual environment
-.venv
+# Executables
+*.exe
+*.out
 
-#Executable files
-*.exe 
