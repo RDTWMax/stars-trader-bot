@@ -1,23 +1,25 @@
 import asyncio
 import os
-import sys # Import sys to allow graceful exit
+import sys
 
-# For quick local test, replace with your actual values temporarily
-# (These should be loaded from your system's environment variables in a real setup,
-# but for this one-time script, direct assignment is fine if you're careful)
-# Make sure these match the ones you set on Render!
-os.environ['TELEGRAM_BOT_TOKEN'] = '7681834277:AAGHULOuNagEvMtUwzKgAzKDjvV3PrUIzRk' # REPLACE THIS
-os.environ['WEBHOOK_URL'] = 'https://starsexchangrbot.onrender.com' # REPLACE WITH YOUR ACTUAL RENDER URL
+# Ensure these environment variables are set for the script to run
+# On Render, these come from your service's environment variables.
+# Locally, you might set them directly here or use a .env file.
+if 'TELEGRAM_BOT_TOKEN' not in os.environ:
+    print("Error: TELEGRAM_BOT_TOKEN environment variable not set.")
+    sys.exit(1)
+if 'WEBHOOK_URL' not in os.environ:
+    print("Error: WEBHOOK_URL environment variable not set.")
+    sys.exit(1)
 
 # Import the function from your Stars.py
 try:
-    from Stars import set_telegram_webhook
+    from Stars import set_telegram_webhook_command # Corrected import
 except ImportError:
-    print("Error: Could not import set_telegram_webhook from Stars.py. Make sure Stars.py is in the same directory.")
+    print("Error: Could not import set_telegram_webhook_command from Stars.py. Make sure Stars.py is in the same directory.")
     sys.exit(1)
-
 
 if __name__ == "__main__":
     print("Attempting to set webhook...")
-    asyncio.run(set_telegram_webhook())
+    asyncio.run(set_telegram_webhook_command()) # Corrected function call
     print("Webhook setup script finished.")
