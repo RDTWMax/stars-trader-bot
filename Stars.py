@@ -98,7 +98,7 @@ def index():
 async def telegram_webhook():
     """Handle incoming Telegram updates from the webhook."""
     # This check is a safeguard; application should be initialized by now
-    if not application.was_initialized:
+    if not application._initialized:
         logger.error("Application not initialized when webhook received a request!")
         # Return a server error code, perhaps with a retry hint
         return "error: bot not ready", 503
