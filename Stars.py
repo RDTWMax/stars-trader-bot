@@ -28,6 +28,3 @@ def telegram_webhook():
     return "OK"
 
 logger.info("Flask routes registered.")
-
-# No bot initialization or main() function from the original Stars.py
-# This file will be run by Gunicorn directly using 'flask_app'
