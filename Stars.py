@@ -1,15 +1,21 @@
 # Stars.py - Minimal version for debugging
 
+# ADD THIS PRINT STATEMENT AT THE VERY TOP
+print("DEBUG: Stars.py is being imported by Gunicorn!")
+
 import os
 from flask import Flask, request, abort
 import logging
 
-# Setup logging to see output in Render logs
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 logger.info("Initializing Flask application...")
 flask_app = Flask(__name__)
+
+# ADD THIS PRINT STATEMENT HERE, after flask_app is created
+print(f"DEBUG: Flask app created. Routes: {flask_app.url_map}")
+
 
 @flask_app.route('/')
 def home():
@@ -24,7 +30,6 @@ def test_route():
 @flask_app.route("/telegram-webhook", methods=["POST"])
 def telegram_webhook():
     logger.info("Received POST to /telegram-webhook (minimal app)")
-    # In this minimal version, we just acknowledge receipt
     return "OK"
 
 logger.info("Flask routes registered.")
