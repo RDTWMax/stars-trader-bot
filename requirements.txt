@@ -3,7 +3,7 @@ Flask==2.3.3 # Or the version you are using
 python-telegram-bot==20.8 # Or the version you are using
 python-dotenv==1.0.0 # Or the version you are using
 gunicorn==21.2.0 # Or the latest stable version
-selenium==4.20.0 # Or the latest stable version
+#selenium==4.20.0 # Or the latest stable version
 # webdriver_manager is usually for local development, not needed on Render if Chrome/Chromedriver is pre-installed
 # If Render requires a specific Chromedriver path or a buildpack for it, you might need to adjust.
 # For browser automation on Render, consider a dedicated service like Browserless or similar,
