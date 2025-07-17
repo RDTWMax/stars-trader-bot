@@ -1,5 +1,5 @@
 # requirements.txt
-Flask==2.3.3 # Or the version you are using
+Flask[async]==2.3.3 # Or the version you are using
 python-telegram-bot==20.8 # Or the version you are using
 python-dotenv==1.0.0 # Or the version you are using
 gunicorn==21.2.0 # Or the latest stable version

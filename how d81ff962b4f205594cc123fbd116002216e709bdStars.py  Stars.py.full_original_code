@@ -1,0 +1,48 @@
+[33mcommit 7eb6ff36eab7e92b0006fb264ddb46ea054dd1a3[m
+Author: Rdtw_max <rdtwalker@gmail.com>
+Date:   Thu Jul 17 15:26:57 2025 +1000
+
+    Debugging: Added print statements
+
+[33mcommit 00531a5af2aeda19dd118d1cda0ba644d7d565aa[m
+Author: Rdtw_max <rdtwalker@gmail.com>
+Date:   Thu Jul 17 14:58:24 2025 +1000
+
+    Deploying minimal Flask app for debugging
+
+[33mcommit 9f9275726e8881a27be48c6fbfe716a7e2caed54[m
+Author: Rdtw_max <rdtwalker@gmail.com>
+Date:   Thu Jul 17 14:39:59 2025 +1000
+
+    Debugging: Minimal Flask app
+
+[33mcommit d81ff962b4f205594cc123fbd116002216e709bd[m
+Author: Rdtw_max <rdtwalker@gmail.com>
+Date:   Thu Jul 17 08:27:30 2025 +1000
+
+    Add test home route
+
+[33mcommit d95fbee6881710520aa29ba155844f3e160efb8f[m
+Author: Rdtw_max <rdtwalker@gmail.com>
+Date:   Wed Jul 16 21:47:00 2025 +1000
+
+    Initial commit: Set up project structure and core files
+
+[33mcommit 449f5718fc1bbad0904894497f9583ecfac067b8[m
+Merge: 25b4d3a 6971a0e
+Author: Max <rdtwalker@gmail.com>
+Date:   Sun Jul 13 20:51:24 2025 +1000
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit fb21cbac9369ee9907adcf6ee9a8dcab189042b5[m
+Author: Max <rdtwalker@gmail.com>
+Date:   Sun Jul 13 17:35:51 2025 +1000
+
+    add Render deployment configuration
+
+[33mcommit 4ed477adf88dbc8f7eaa1f001d81c19f3b9404e5[m
+Author: RDTWMax <101951125+RDTWMax@users.noreply.github.com>
+Date:   Sun Jul 13 16:42:38 2025 +1000
+
+    Add files via upload
