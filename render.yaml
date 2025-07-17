@@ -1,42 +1,20 @@
 services:
-  # Web Service for the Flask Webhook
   - type: web
-    name: stars-trader-webhook
+    name: StarsExchangrBot # This will be the name of your web service on Render
     env: python
-    plan: free
+    plan: free # Free tier plan
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn wsgi:application"
+    # Correct start command: points to flask_app in Stars.py
+    startCommand: "gunicorn Stars:flask_app --workers 4 --bind 0.0.0.0:$PORT"
+    healthCheckPath: / # Add a simple health check to the root path
     envVars:
       - key: PYTHON_VERSION
-        value: 3.10.12
-      - fromGroup: stars-trader-secrets
-  # Background Worker for the Telegram Bot
-  - type: worker
-    name: stars-trader-bot
-    env: python
-    plan: free
-    buildPacks:
-      - url: https://github.com/heroku/heroku-buildpack-google-chrome
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "python Stars.py"
-    envVars:
-      - key: PYTHON_VERSION
-        value: 3.10.12
-      - fromGroup: stars-trader-secrets
-envVarGroups:
-  - name: stars-trader-secrets
-    envVars:
+        value: 3.10.12 # Ensure this matches your Python version
       - key: TELEGRAM_BOT_TOKEN
-        value: ""
-      - key: NOWPAYMENTS_API_KEY
-        value: ""
-      - key: IPN_SECRET_KEY
-        value: ""
+        sync: false # Render will prompt you for this value in the dashboard
       - key: WEBHOOK_URL
-        value: ""
-      - key: FRAGMENTS_USERNAME
-        value: ""
-      - key: FRAGMENTS_PASSWORD
-        value: ""
-      - key: DB_FILE
-        value: "stars_trader.db"
+        sync: false # Render will prompt you for this value in the dashboard
+      - key: NOWPAYMENTS_API_KEY
+        sync: false # Render will prompt you for this value in the dashboard
+      - key: IPN_SECRET_KEY
+        sync: false # Render will prompt you for this value in the dashboard
