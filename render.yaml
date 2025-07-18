@@ -3,8 +3,9 @@ services:
     name: StarsExchangrBot # This will be the name of your web service on Render
     env: python
     plan: free # Free tier plan
-    buildCommand: "pip install -r requirements.txt"
-    # Correct start command: points to flask_app in Stars.py
+    # The build command now installs dependencies AND sets the Telegram webhook.
+    # This command runs the `set_telegram_webhook_command` function from your Stars.py file.
+    buildCommand: "pip install -r requirements.txt && python -c 'import asyncio, Stars; asyncio.run(Stars.set_telegram_webhook_command())'"
     startCommand: "gunicorn Stars:flask_app --workers 4 --bind 0.0.0.0:$PORT"
     healthCheckPath: / # Add a simple health check to the root path
     envVars:
